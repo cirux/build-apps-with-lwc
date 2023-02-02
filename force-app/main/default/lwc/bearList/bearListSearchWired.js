@@ -1,25 +1,12 @@
-import { publish, MessageContext } from 'lightning/messageService';
-import BEAR_LIST_UPDATE_MESSAGE from '@salesforce/messageChannel/BearListUpdate__c';
-import { NavigationMixin } from 'lightning/navigation';
 import { LightningElement, wire } from 'lwc';
 /** BearController.searchBears(searchTerm) Apex method */
 import searchBears from '@salesforce/apex/BearController.searchBears';
 export default class BearList extends NavigationMixin(LightningElement) {
 	searchTerm = '';
 
-	bears;
-	@wire(MessageContext) messageContext;
-
+	// a searchTerm reactive property and we pass it as a parameter of our wired Apex call to searchBears
 	@wire(searchBears, {searchTerm: '$searchTerm'})
-	loadBears(result) {
-		this.bears = result;
-		if (result.data) {
-			const message = {
-				bears: result.data
-			};
-			publish(this.messageContext, BEAR_LIST_UPDATE_MESSAGE, message);
-		}
-	}
+	bears;
 
 	handleSearchTermChange(event) {
 		// Debouncing this method: do not update the reactive property as
