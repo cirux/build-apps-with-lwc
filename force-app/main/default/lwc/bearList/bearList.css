@@ -1,0 +1,10 @@
+/* These CSS rules add a border to bear cards and sets the height of a bear silhouette image. */
+.bear-tile {
+	display: block;
+	border: 1px solid #d2955d;
+	border-radius: .25rem;
+	background-color: #fae8d2;
+}
+.bear-silhouette {
+	height: 100px;
+}

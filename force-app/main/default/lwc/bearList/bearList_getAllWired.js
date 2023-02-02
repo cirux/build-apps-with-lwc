@@ -1,0 +1,12 @@
+import { LightningElement, wire } from 'lwc';
+import ursusResources from '@salesforce/resourceUrl/ursus_park';
+/** BearController.getAllBears() Apex method */
+import getAllBears from '@salesforce/apex/BearController.getAllBears';
+export default class BearList extends LightningElement {
+
+	// wired Apex
+	@wire(getAllBears) bears;
+	appResources = {
+		bearSilhouette: `${ursusResources}/standing-bear-silhouette.png`,
+	};
+}
